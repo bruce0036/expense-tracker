@@ -137,6 +137,8 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 app.get('/expenses', passportConfig.isAuthenticated, expenseController.index);
+app.get('/addexpense', passportConfig.isAuthenticated, expenseController.add);
+app.post('/addexpense', passportConfig.isAuthenticated, expenseController.addExpense);
 /**
  * Error Handler.
  */

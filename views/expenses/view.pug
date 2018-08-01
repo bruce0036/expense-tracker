@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   h1 Track Expenses
@@ -17,3 +17,14 @@ block content
           td= expense.description
           td= expense.amount
           td= expense.comment
+  hr
+  .row
+    .col-md-4
+      p
+        a.btn.btn-raised(href='/addexpense', role='button') Add Expense
+    .col-md-4
+      p
+        a.btn.btn-raised(href='/addexpense', role='button') Edit Expense
+    .col-md-4
+      p
+        a.btn.btn-raised(href='/addexpense', role='button') Delete Expense
