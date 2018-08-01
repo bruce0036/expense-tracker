@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1 Track Expenses
+  hr
+  table(style='width:100%', border='1')
+    tr
+      th Date
+      th Time
+      th Description
+      th Amount
+      th Comment
+      for expense in expenseList
+        tr
+          td= expense.date
+          td= expense.time
+          td= expense.description
+          td= expense.amount
+          td= expense.comment
