@@ -1,17 +1,25 @@
+const Expense = require('../models/Expense');
+
 exports.index = (req, res) => {
   const expenses = [];
 
-  const expense = {
-    date: '2018/2/18',
-    time: '09:00',
-    description: 'This is a test value',
-    amount: '100$',
-    comment: 'This is a test comment',
-  };
-  expenses.push(expense);
+  Expense.find({}, (err, expenseItems) => {
+    if (err) throw err;
 
-  res.render('expenses', {
-    title: 'Track Expenses',
-    expenseList: expenses
+    // object of all the user
+    expenseItems.forEach((expenseItem) => {
+      const expense = {
+        date: expenseItem.date,
+        time: expenseItem.time,
+        description: expenseItem.description,
+        amount: expenseItem.amount,
+        comment: expenseItem.comment,
+      };
+      expenses.push(expense);
+    });
+    res.render('expenses', {
+      title: 'Track Expenses',
+      expenseList: expenses
+    });
   });
 };
