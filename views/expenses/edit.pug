@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  .pb-2.mt-2.mb-4.border-bottom
+    h1 Edit Expense
+  form(id='add-expense-form', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='date') Date
+      .col-md-7
+        input.form-control(type='String', name='date', id='date', value=date, placeholder='2018/01/01', disabled, required)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='time') Time
+      .col-md-7
+        input.form-control(type='String', name='time', id='time', value=time, placeholder='12:00', disabled, required)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='description') Description
+      .col-md-7
+        input.form-control(type='String', name='description', id='description', value=description, placeholder='', autofocus, required)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='amount') Amount
+      .col-md-7
+        input.form-control(type='String', name='amount', id='amount', value=amount, placeholder='', required)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='comment') Comment
+      .col-md-7
+        input.form-control(type='String', name='comment', id='comment', value=comment, placeholder='', required)
+    .form-group.offset-sm-3.col-md-7.pl-2
+      button.btn.btn-success(type='submit')
+        | Edit Expense

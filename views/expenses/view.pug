@@ -5,6 +5,7 @@ block content
   hr
   table(style='width:100%', border='1')
     tr
+      th
       th Date
       th Time
       th Description
@@ -12,6 +13,8 @@ block content
       th Comment
       for expense in expenseList
         tr
+          td
+            input(type="checkbox", id=checked)
           td= expense.date
           td= expense.time
           td= expense.description
@@ -24,7 +27,7 @@ block content
         a.btn.btn-raised(href='/addexpense', role='button') Add Expense
     .col-md-4
       p
-        a.btn.btn-raised(href='/addexpense', role='button') Edit Expense
+        a.btn.btn-raised(href='/editexpense', role='button') Edit Expense
     .col-md-4
       p
         a.btn.btn-raised(href='/addexpense', role='button') Delete Expense

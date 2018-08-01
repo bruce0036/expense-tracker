@@ -43,3 +43,14 @@ exports.addExpense = (req, res, next) => {
     res.redirect('/expenses');
   });
 };
+
+exports.edit = (req, res) => {
+  res.render('expenses/edit', {
+    title: 'Edit Expense',
+    date: '2018/01/01',
+    time: '12:00',
+    description: 'test',
+    amount: '100',
+    comment: 'test comment'
+  });
+};
