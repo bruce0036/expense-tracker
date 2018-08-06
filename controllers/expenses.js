@@ -28,17 +28,49 @@ exports.addExpense = (req, res, next) => {
 
   expense.save((err) => {
     if (err) { return next(err); }
+    req.flash('success', { msg: 'Expense information has been added.' });
     res.redirect('/expenses');
   });
 };
 
 exports.edit = (req, res) => {
-  res.render('expenses/edit', {
-    title: 'Edit Expense',
-    date: '2018/01/01',
-    time: '12:00',
-    description: 'test',
-    amount: '100',
-    comment: 'test comment'
+  Expense.findById(req.query.id, (err, expense) => {
+    if (err) throw err;
+
+    res.render('expenses/edit', {
+      title: 'Edit Expense',
+      id: expense.id,
+      date: expense.date,
+      time: expense.time,
+      description: expense.description,
+      amount: expense.amount,
+      comment: expense.comment
+    });
+  });
+};
+
+exports.editExpense = (req, res, next) => {
+  Expense.findById(req.body.id, (err, expense) => {
+    if (err) { return next(err); }
+    console.log(expense);
+    expense.date = req.body.date || '';
+    expense.time = req.body.time || '';
+    expense.description = req.body.description || '';
+    expense.amount = req.body.amount || '';
+    expense.comment = req.body.comment || '';
+
+    expense.save((err) => {
+      if (err) return next(err);
+
+      req.flash('success', { msg: 'Expense information has been updated.' });
+      res.redirect('/expenses');
+    });
+  });
+};
+
+exports.remove = (req, res) => {
+  Expense.remove({ _id: req.query.id }, (err) => {
+    if (err) throw err;
+    res.redirect('/expenses');
   });
 };

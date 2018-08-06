@@ -140,6 +140,8 @@ app.get('/expenses', passportConfig.isAuthenticated, expenseController.index);
 app.get('/addexpense', passportConfig.isAuthenticated, expenseController.add);
 app.post('/addexpense', passportConfig.isAuthenticated, expenseController.addExpense);
 app.get('/editexpense', passportConfig.isAuthenticated, expenseController.edit);
+app.post('/editexpense', passportConfig.isAuthenticated, expenseController.editExpense);
+app.get('/removeexpense', passportConfig.isAuthenticated, expenseController.remove);
 /**
  * Error Handler.
  */

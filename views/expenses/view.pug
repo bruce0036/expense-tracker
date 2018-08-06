@@ -5,29 +5,26 @@ block content
   hr
   table(style='width:100%', border='1')
     tr
-      th
       th Date
       th Time
       th Description
       th Amount
       th Comment
+      th Action
       for expense in expenseList
         tr
-          td
-            input(type="checkbox", id=checked)
           td= expense.date
           td= expense.time
           td= expense.description
           td= expense.amount
           td= expense.comment
+          td
+            a(href='/editexpense?id=' + expense.id) Edit
+            b  / 
+            a(href='/removeexpense?id=' + expense.id) Remove
   hr
   .row
     .col-md-4
       p
         a.btn.btn-raised(href='/addexpense', role='button') Add Expense
-    .col-md-4
-      p
-        a.btn.btn-raised(href='/editexpense', role='button') Edit Expense
-    .col-md-4
-      p
-        a.btn.btn-raised(href='/addexpense', role='button') Delete Expense
+    
