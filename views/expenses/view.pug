@@ -5,10 +5,12 @@ block content
   hr
   table(style='width:100%', border='1')
     tr
-      th Date
+      th 
+        a(href='/expenses?sort=date') Date
       th Time
       th Description
-      th Amount
+      th 
+        a(href='/expenses?sort=amount') Amount
       th Comment
       th Action
       for expense in expenseList
@@ -21,7 +23,7 @@ block content
           td
             a(href='/editexpense?id=' + expense.id) Edit
             b  / 
-            a(href='/removeexpense?id=' + expense.id) Remove
+            a(href='/removeexpense?id=' + expense.id onclick='return confirm("Are you Sure")') Remove
   hr
   .row
     .col-md-4

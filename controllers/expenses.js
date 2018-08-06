@@ -1,14 +1,34 @@
 const Expense = require('../models/Expense');
 
 exports.index = (req, res) => {
-  Expense.find({}, (err, expenseItems) => {
-    if (err) throw err;
+  if (req.query.sort === 'date') {
+    Expense.find({}).sort({ date: -1 }).exec((err, expenseItems) => {
+      if (err) throw err;
 
-    res.render('expenses/view', {
-      title: 'Track Expenses',
-      expenseList: expenseItems
+      res.render('expenses/view', {
+        title: 'Track Expenses',
+        expenseList: expenseItems
+      });
     });
-  });
+  } else if (req.query.sort === 'amount') {
+    Expense.find({}).sort({ amount: 1 }).exec((err, expenseItems) => {
+      if (err) throw err;
+
+      res.render('expenses/view', {
+        title: 'Track Expenses',
+        expenseList: expenseItems
+      });
+    });
+  } else {
+    Expense.find({}, (err, expenseItems) => {
+      if (err) throw err;
+
+      res.render('expenses/view', {
+        title: 'Track Expenses',
+        expenseList: expenseItems
+      });
+    });
+  }
 };
 
 exports.add = (req, res) => {
